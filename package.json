@@ -1,9 +1,35 @@
 {
   "name": "monitoring-app",
+  "type": "module",
   "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "rimraf build && tsc",
+    "start": "node build/index.js",
+    "start-ts": "node --loader ts-node/esm src/index.ts",
+    "dev": "nodemon",
+    "prepare": "husky"
+  },
   "dependencies": {
     "fastify": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.8",
+    "eslint": "^9.21.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-config-standard-with-typescript": "^43.0.1",
+    "fastify-tsconfig": "^3.0.0",
+    "husky": "^9.1.7",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.3",
+    "rimraf": "^6.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --config .prettierrc 'src/**/*.ts' --write",
+      "eslint . --ext .ts --fix"
+    ]
   }
 }
