@@ -1,20 +1,19 @@
-import standardWithTypeScript from 'eslint-config-standard-with-typescript'
-import prettier from 'eslint-config-prettier'
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import eslint from '@eslint/js'
+import tseslint from 'typescript-eslint'
 
-export default [
+export default tseslint.config(
+  eslint.configs.recommended,
+  tseslint.configs.recommended,
+  eslintPluginPrettierRecommended,
   {
-    plugins: { standardWithTypeScript, prettier },
     languageOptions: {
       parserOptions: {
         project: './tsconfig.json',
       },
     },
-    rules: {
-      '@typescript-eslint/consistent-type-assertions': 'off',
-      '@typescript-eslint/no-floating-promises': 'off',
-      '@typescript-eslint/strict-boolean-expressions': 'off',
-      '@typescript-eslint/explicit-function-return-type': 'off',
-      '@typescript-eslint/naming-convention': 'off',
-    },
   },
-]
+  {
+    ignores: ['build'],
+  },
+)
