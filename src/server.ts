@@ -1,10 +1,10 @@
 import fastify from 'fastify'
 
+import authRoute from './interface/routes/auth.route.js'
+
 const server = fastify()
 
-server.get('/ping', async () => {
-  return 'pong\n'
-})
+server.register(authRoute, { prefix: '/auth' })
 
 server.listen({ port: 8080 }, (err, address) => {
   if (err) {

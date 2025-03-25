@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "build": "rimraf build && tsc",
-    "start": "node build/index.js",
-    "start-ts": "node --loader ts-node/esm src/index.ts",
+    "start": "node build/server.js",
+    "start-ts": "node --loader ts-node/esm src/server.ts",
     "dev": "nodemon",
     "prepare": "husky"
   },
