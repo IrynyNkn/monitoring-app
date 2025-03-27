@@ -1,15 +1,9 @@
-import fastify from 'fastify'
+import App from './infrastructure/webserver/server.js'
+import AuthRoute from './interface/routes/auth.route.js'
 
-import authRoute from './interface/routes/auth.route.js'
-
-const server = fastify()
-
-server.register(authRoute, { prefix: '/auth' })
-
-server.listen({ port: 8080 }, (err, address) => {
-  if (err) {
-    console.error(err)
-    process.exit(1)
-  }
-  console.log(`Server listening at ${address}`)
+export const app = new App({
+  plugins: [],
+  routes: [AuthRoute],
 })
+
+app.listen()
