@@ -28,16 +28,13 @@ class App {
     })
   }
 
-  public routes<T extends RouteInterface>(routes: {
+  private routes<T extends RouteInterface>(routes: {
     forEach: (arg0: (route: new () => T) => void) => void
   }) {
     routes.forEach(Route => {
       const router = new Route()
       this.app.register(router.routes, { prefix: router.prefix_route })
     })
-    // this.app.get('/healthcheck', async (request, reply) => {
-    //   reply.send({ healthcheck: 'server is alive' })
-    // })
   }
 
   public listen() {
