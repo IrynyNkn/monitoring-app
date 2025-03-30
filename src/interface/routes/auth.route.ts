@@ -4,7 +4,7 @@ import AuthController from '../controller/auth/auth.controller.js'
 import RouteInterface from '../../infrastructure/webserver/route.interface.js'
 
 const userRoutes: FastifyPluginAsync = async fastify => {
-  fastify.get('/me', AuthController.getMe)
+  fastify.get('/me', { preHandler: fastify.authenticate }, AuthController.getMe)
 
   fastify.post('/login', AuthController.login)
 

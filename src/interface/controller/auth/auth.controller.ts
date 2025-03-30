@@ -17,7 +17,9 @@ class AuthController {
 
   static async getMe(request: FastifyRequest, reply: FastifyReply) {
     const user = await request.server.authService.findMe('test@test.com')
-    return reply.status(200).send({ data: user })
+    return reply
+      .status(200)
+      .send({ data: user, tokenEmail: request.user.email })
   }
 }
 
