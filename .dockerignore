@@ -1,0 +1,9 @@
+node_modules
+build
+.git
+.gitignore
+.dockerignore
+.env
+.env.local
+.prettierrc
+.eslint.config.js

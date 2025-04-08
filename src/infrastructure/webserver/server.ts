@@ -38,7 +38,7 @@ class App {
   }
 
   public listen() {
-    this.app.listen({ port: this.app_port }, err => {
+    this.app.listen({ port: this.app_port, host: this.app_domain }, err => {
       if (err) {
         this.app.log.fatal({ msg: `Application startup error`, err })
         process.exit(1)

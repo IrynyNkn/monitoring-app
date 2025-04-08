@@ -2,7 +2,7 @@ import fp from 'fastify-plugin'
 import fastifyJwt from '@fastify/jwt'
 import { FastifyRequest, FastifyReply } from 'fastify'
 
-import { UserJwt } from '../../domain/interface/UserJwt.interface.js'
+import { UserJwt } from '../../domain/interface/userJwt.interface.js'
 
 export default fp(async fastify => {
   fastify.register(fastifyJwt, {
