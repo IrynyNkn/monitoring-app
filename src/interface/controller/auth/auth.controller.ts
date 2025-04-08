@@ -2,7 +2,17 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 
 class AuthController {
   static async register(request: FastifyRequest, reply: FastifyReply) {
-    const data = await request.server.pg.query('SELECT * FROM user')
+    let data
+
+    try {
+      const { rows } = await request.server.pgClient.query(
+        'SELECT * FROM "user"',
+      )
+      data = rows
+    } finally {
+      request.server.pgClient.release()
+    }
+
     return reply.status(200).send({ data })
   }
 
