@@ -8,13 +8,17 @@ services:
     volumes:
       - .:/app
     working_dir: /app
-    command: yarn dev
+    command: /bin/sh -c "yarn migrate up && yarn dev"
+    env_file:
+      - .env
+    depends_on:
+      - postgres
 
   postgres:
     image: "postgres:17.4"
     container_name: "postgres"
     volumes:
-      - pgdata:/var/lib/postgresql/data/
+      - pgdatavol:/var/lib/postgresql/data/
     ports:
       - "5431:5432"
     environment:
@@ -25,5 +29,5 @@ services:
       - POSTGRES_PASSWORD=admin-ira-pw
 
 volumes:
-  pgdata:
-    name: pgdata
+  pgdatavol:
+    name: pgdatavol

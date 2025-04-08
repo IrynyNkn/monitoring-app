@@ -2,7 +2,8 @@ import { FastifyReply, FastifyRequest } from 'fastify'
 
 class AuthController {
   static async register(request: FastifyRequest, reply: FastifyReply) {
-    return reply.status(200).send({ message: 'Register successful' })
+    const data = await request.server.pg.query('SELECT * FROM user')
+    return reply.status(200).send({ data })
   }
 
   static async login(request: FastifyRequest, reply: FastifyReply) {
